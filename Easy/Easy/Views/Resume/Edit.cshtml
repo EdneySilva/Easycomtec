@@ -1,0 +1,19 @@
+@model Easy.Core.Candidate
+@using Easy.Extensions
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("../Resume/CreateOrEdit")
+
+@section scripts{
+    @Html.Partial("../Shared/_IncludeResumeScript")
+    <script src="~/js/providers/JsonDatetimeParseProvider.js"></script>
+
+    <script>
+        function onCandidateLoad(candidate) {
+            return JSON.parse('@Html.Raw(this.Model.ToSafelyJson())', JSON.dateParser);
+        }
+    </script>
+}

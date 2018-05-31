@@ -1,0 +1,51 @@
+@*<script type="text/javascript" src="//platform.linkedin.com/in.js">
+        api_key: 78solhtvuzyg33
+        authorize: true
+        onLoad: onLinkedInLoad
+    </script>*@
+<script src="~/js/providers/LinkedIn.js"></script>
+<script src="~/js/validators/tableValidator.js"></script>
+<script src="~/js/services/httpService.js"></script>
+<script src="~/js/services/candidateService.js"></script>
+<script src="~/js/services/skillService.js"></script>
+<script src="~/js/user.js"></script>
+<script src="~/js/skill.js"></script>
+<script src="~/js/phone.js"></script>
+<script>
+
+        // Setup an event listener to make an API call once auth is complete
+        function onLinkedInLoad() {
+
+            $("span[id*='-title-text'").html("Use Linkedin profile");
+            //IN.UI.Authorize().params({"scope":["r_basicprofile", "r_emailaddress", "r_contactinfo"]});
+            IN.UI.Authorize().place();
+            IN.Event.on(IN, 'auth', getProfileData);
+            //IN.Event.on(IN, "auth", getProfileData);
+        }
+
+        // Handle the successful return from the API call
+        function onSuccess(data) {
+            console.log(data);
+        }
+
+        // Handle an error response from the API call
+        function onError(error) {
+            console.log(error);
+        }
+
+        // Use the API call wrapper to request the member's basic profile data
+        function getProfileData() {
+            //IN.API.Raw("/people/~").result(onSuccess).error(onError);
+            IN.API.Profile("me").fields("id,firstName,lastName,phone-numbers,email-address,picture-urls::(original),public-profile-url,location:(name)").result(function (me) {
+                var profile = me.values[0];
+                var id = profile.id;
+                var firstName = profile.firstName;
+                var lastName = profile.lastName;
+                var emailAddress = profile.emailAddress;
+                var pictureUrl = profile.pictureUrls.values[0];
+                var profileUrl = profile.publicProfileUrl;
+                var country = profile.location.name;
+            });
+        }
+
+</script>

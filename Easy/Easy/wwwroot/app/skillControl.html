@@ -1,0 +1,41 @@
+﻿<br />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Skill Info</h4>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="Name">Skill</label>
+            <input type="text" id="Skill_Name" name="Skill.Name" ng-model="$ctrl.Skill.Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="Level">Level</label>
+            <div class="input-group">
+                <select ng-model="$ctrl.Skill.Level" class="form-control" id="Skill_Level" name="Skill.Level">
+                    <option ng-repeat="level in $ctrl.levels" value="{{level.value}}" ng-selected="{{level.selected}}">{{level.name}}</option>
+                </select>
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" ng-click="$ctrl.add();" ng-disabled="$ctrl.disableAdd();">add</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-responsive table-hover table-striped" ng-model="$ctrl.skills" ng-required="true" id="Skills" name="Skills">
+    <thead>
+        <tr><th>Skill</th><th>Level</th></tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="skill in $ctrl.skills">
+            <td>
+                {{skill.Name}}
+            </td>
+            <td>
+                {{$ctrl.levelName(skill.Level)}}
+            </td>
+            <td>
+                <button class="btn btn-danger" ng-click="$ctrl.remove(skill)">remover</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div ng-app="app" ng-form="frmResume" ng-controller="customersCtrl">
+    <alert id="alert" name="alert"></alert>
+    <table class="table table-striped table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="x in resumes">
+            <td>{{ x.Name }}</td>
+            <td>{{ x.Account.Email }}</td>
+            <td>
+                <div class="btn-group pull-right" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-danger" ng-click="delete(x.Id)">remove</button>
+                    <button type="button" class="btn btn-success" ng-click="edit(x.Id)">edit resume</button>
+                    @*<button type="button" class="btn btn-secondary">Right</button>*@
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/services/httpService.js"></script>
+    <script>
+
+        window.registerToAngular(function (app) {
+            app.controller('customersCtrl', function ($scope, $httpClient, UserNotification) {
+                $scope.resumes = [];
+
+                $scope.edit = function (id) {
+                    window.location.href = '/Resume/' + id;
+                }
+
+                $scope.delete = function (id) {
+                    $httpClient
+                        .deleteAsync("/api/candidate/" + id)
+                        .Success(function (response) {
+                            var index = $scope.resumes.findIndex((item) => item.Id == id);
+                            if (index > -1)
+                                $scope.resumes.splice(index, 1);
+                            UserNotification.Instance.Success("Item deleted with success!", "Information");
+                        }).Fail(function (response) {
+                            UserNotification.Instance.Error(response.MessageError, "Error");
+                        });
+                }
+
+                $httpClient.getAsync("/api/candidate")
+                    .Success(function (response) {
+                        $scope.resumes = response.data.Model;
+                    });
+            });
+        });
+    </script>
+}
