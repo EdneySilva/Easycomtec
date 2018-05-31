@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Data", "Easy.Data\Easy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy.Test", "Easy.Test\Easy.Test.csproj", "{75D8BCA8-446E-4B8F-9D19-C23FD8CDC1E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.TestCLI", "Easy.TestCLI\Easy.TestCLI.csproj", "{1D56FDF3-2FD5-4AC5-A95E-A4A39D5C0E2E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{75D8BCA8-446E-4B8F-9D19-C23FD8CDC1E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75D8BCA8-446E-4B8F-9D19-C23FD8CDC1E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75D8BCA8-446E-4B8F-9D19-C23FD8CDC1E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D56FDF3-2FD5-4AC5-A95E-A4A39D5C0E2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D56FDF3-2FD5-4AC5-A95E-A4A39D5C0E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D56FDF3-2FD5-4AC5-A95E-A4A39D5C0E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D56FDF3-2FD5-4AC5-A95E-A4A39D5C0E2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
